@@ -26,8 +26,14 @@ Clone the project:
 Using composer
 ```YML
 {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/polarbearhandler/phpjasper"
+        }
+    ],
     "require": {
-        "polarbear/phpjasper": "1.*",
+        "polarbear/phpjasper": "dev-master",
     }
 }
 ```

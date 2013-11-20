@@ -27,7 +27,7 @@ Using composer
 ```YML
 {
     "require": {
-        "polarbear/phpjasper: "1.*",
+        "polarbear/phpjasper": "1.*",
     }
 }
 ```

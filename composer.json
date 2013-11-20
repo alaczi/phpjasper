@@ -1,0 +1,13 @@
+{
+    "name": "polarbear/phpjasper",
+    "type": "library",
+    "description": "JasperReports integration with JavaBridge",
+    "keywords": ["library", "JasperReports", "JavaBridge", "Report"],
+    "homepage": "https://github.com/polarbearhandler/phpjasper",
+    "autoload": {
+        "psr-0": {"PolarBear\\PhpJasperReports\\": "src/"}
+    },
+    "require": {
+        "php": ">=5.3.0",
+    }
+}

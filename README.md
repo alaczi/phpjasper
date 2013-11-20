@@ -7,7 +7,7 @@ This component is to run JasperReports reports in PHP with using JavaBridge.
 JasperReports is a great tool to generate reports with different output formats (for example: PDF, DOC, XLS),
 and it comes with an wysiwyg editor, iReports.
 
-##Requirements:
+##Requirements
 To get this work, u have to install JavaBridge and add required .jars from JasperReports.
 
 JavaBridge: http://php-java-bridge.sourceforge.net/pjb/
@@ -16,9 +16,9 @@ iReport: http://community.jaspersoft.com/project/ireport-designer
 
 There is a script in the Resources/script dir to easily start the standalone JavaBridge server with the jar files included in the classpath
 
-##Install:
+##Install
 
-Clone the project:
+Clone the project
 ```BASH
     git clone https://github.com/polarbearhandler/phpjasper.git
 ```

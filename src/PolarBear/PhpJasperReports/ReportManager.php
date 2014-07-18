@@ -363,7 +363,7 @@ class ReportManager {
 //                    $value = $this->convertValue($value, ReportParameter::REPORT_PARAM_STRING);
 //                    $temp = new \Java("java.text.DateFormat");
 //                    $javaObject = $temp->parse($value);
-                    $value = $this->convertValue(bcmul($value, '1000'), ReportParameter::REPORT_PARAM_BIGDECIMAL);
+                    $value = $this->convertValue(bcmul($value, '1000'), ReportParameterType::REPORT_PARAM_BIGDECIMAL);
                     return new \Java($className, $value->longValue());
                 case ReportParameterType::REPORT_PARAM_DATASOURCE:
                 case ReportParameterType::REPORT_PARAM_REPORT:

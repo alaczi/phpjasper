@@ -357,6 +357,9 @@ class ReportManager {
                 case ReportParameterType::REPORT_PARAM_BIGDECIMAL:
                     return new \Java($className, $value);
                 case ReportParameterType::REPORT_PARAM_DATE:
+                    if ($value instanceof \DateTime || $value instanceof \Date) {
+                        $value = $value->getTimestamp();
+                    }
 //                    $value = $this->convertValue($value, ReportParameter::REPORT_PARAM_STRING);
 //                    $temp = new \Java("java.text.DateFormat");
 //                    $javaObject = $temp->parse($value);

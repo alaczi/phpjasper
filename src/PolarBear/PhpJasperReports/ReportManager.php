@@ -266,7 +266,7 @@ class ReportManager {
 //                $this->getCache()->delete($reportName);
 //            }
             return $report;
-        } catch (JavaException $e) {
+        } catch (\JavaException $e) {
             $trace = new \Java("java.io.ByteArrayOutputStream");
             $e->printStackTrace(new \Java("java.io.PrintStream", $trace));
             throw new ReportException(sprintf('Unable to compile report: %s\n%s', $reportName, $trace->toString()));
@@ -291,7 +291,7 @@ class ReportManager {
                 }
             }
             return $hashmap;
-        } catch (JavaException $e) {
+        } catch (\JavaException $e) {
             $trace = new \Java("java.io.ByteArrayOutputStream");
             $e->printStackTrace(new \Java("java.io.PrintStream", $trace));
             throw new ReportException(sprintf('Java exception during the parameter hashmap creation.\n%s', $trace));
@@ -326,7 +326,7 @@ class ReportManager {
                 }
                 return new \Java("net.sf.jasperreports.engine.data.JRMapCollectionDataSource", $vector);
             }
-        } catch (JavaException $e) {
+        } catch (\JavaException $e) {
             $trace = new \Java("java.io.ByteArrayOutputStream");
             $e->printStackTrace(new \Java("java.io.PrintStream", $trace));
             throw new ReportException(sprintf('Java exception during the datasource creation.\n%s', $trace));

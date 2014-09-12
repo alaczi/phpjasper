@@ -94,7 +94,6 @@ class ReportManager {
         if ($tmpDir !== null) {
             $this->tmpDir = $tmpDir;
         }
-        $this->init();
     }
 
     /**
@@ -110,6 +109,8 @@ class ReportManager {
         }
         if (function_exists("java_get_server_name")) {
             $this->isJava = true;
+        } else {
+            throw new NoJavaException();
         }
     }
 
@@ -148,11 +149,9 @@ class ReportManager {
      * @TODO add the possibility to pass the exporter parameters
      */
     public function runReport($reportName, $targetFile, $targetFormat, $reportParams, $dataSource, $keepInCache, $forceCompile, $encoding='UTF-8') {
-
+        $this->init();
         $result = array();
-        if (!$this->isJava) {
-            throw new NoJavaException();
-        }
+
         if (!$this->isSupportedFormat($targetFormat)){
             throw new NotSupportedFormatException(sprintf('Output format "%s" is not supported.', $targetFormat));
         }
@@ -249,9 +248,8 @@ class ReportManager {
      * @TODO: implement proper cache handling as there is a timeout in javabridge, it will drop the instance of the object after a while
      */
     public function compileReport($reportName, $keepInCache = false, $forceCompile = false) {
-        if (!$this->isJava) {
-            throw new NoJavaException();
-        }
+        $this->init();
+
         try {
             $report = null;
 //            $report = $this->getCache()->get($reportName);
@@ -279,9 +277,7 @@ class ReportManager {
      * @return Object the java hashmap of the report parameters
      */
     public function createParameterHashMap($reportParams) {
-        if (!$this->isJava) {
-            throw new NoJavaException();
-        }
+        $this->init();
         try {
             $hashmap = new \Java("java.util.HashMap");
             if (sizeof($reportParams) > 0) {
@@ -306,6 +302,7 @@ class ReportManager {
      * Each row is an associative array of column elements as ReportParameter instances
      */
     public function createDatasource($dataSource) {
+        $this->init();
         if (!$this->isJava) {
             throw new NoJavaException();
         }
@@ -343,6 +340,8 @@ class ReportManager {
      * @throws Exception if the conversion was unsuccesful
      */
     public function convertValue($value, $className) {
+        $this->init();
+
         try {
             if (is_null($value) || $value == '') {
                 return null;

@@ -1,0 +1,20 @@
+language: php
+
+php:
+  - 8.0
+
+# execute any number of scripts before the test run, custom env's are available as variables
+before_script:
+  - sudo apt update
+  - sudo apt install maven
+  - make javabridge-setup
+  - phpenv config-add travis/phpconfig.ini
+  - make install
+  - which java
+  - make javabridge-start
+  - phpunit --version
+
+# omitting "script:" will default to phpunit
+# use the $DB env variable to determine the phpunit.xml to use
+script:
+  make test

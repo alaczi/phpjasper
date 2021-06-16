@@ -3,6 +3,7 @@ namespace PolarBear\PhpJasperReports\Tests;
 
 use PolarBear\PhpJasperReports\ReportManager;
 use PolarBear\PhpJasperReports\ReportParameterFactory;
+use \PHPUnit\Framework\TestCase;
 
 require_once dirname(__FILE__)."/../ReportManager.php";
 
@@ -11,11 +12,12 @@ require_once dirname(__FILE__)."/../ReportManager.php";
  *
  * @author Andras Laczi
  */
-class ReportManagerTest extends \PHPUnit_Framework_TestCase{
+class ReportManagerTest extends TestCase {
 
 
-    public function testReportManager(){
+    public function testReportManager() {
         $manager = new ReportManager('http://127.0.0.1:8081/JavaBridge/java/Java.inc');
+        $this->assertNotNull($manager);
         return $manager;
     }
 
@@ -33,7 +35,8 @@ class ReportManagerTest extends \PHPUnit_Framework_TestCase{
      * @depends testReportManager
      */
     public function testXls(ReportManager $manager) {
-        return $manager->runReport("./Resources/testReports/test.jrxml", "memory", ReportManager::REPORT_OUTPUT_XLS, $this->dummyParams(), $this->dummyDataSource(), false, true, null);
+        $result = $manager->runReport("./Resources/testReports/test.jrxml", "memory", ReportManager::REPORT_OUTPUT_XLS, $this->dummyParams(), $this->dummyDataSource(), false, true, null);
+        $this->assertNotEmpty($result);
     }
 
     /**
@@ -42,7 +45,7 @@ class ReportManagerTest extends \PHPUnit_Framework_TestCase{
      */
     public function testHtml(ReportManager $manager) {
         $result = $manager->runReport("./Resources/testReports/test.jrxml", "memory", ReportManager::REPORT_OUTPUT_HTML, $this->dummyParams(), $this->dummyDataSource(), false, true, null);
-        $this->assertStringStartsWith('<html', $result);
+        $this->assertStringStartsWith('<!DOCTYPE html', $result);
     }
 
     /**
@@ -50,7 +53,8 @@ class ReportManagerTest extends \PHPUnit_Framework_TestCase{
      * @depends testReportManager
      */
     public function testRtf(ReportManager $manager) {
-        return $manager->runReport("./Resources/testReports/test.jrxml", "memory", ReportManager::REPORT_OUTPUT_RTF, $this->dummyParams(), $this->dummyDataSource(), false, true, null);
+        $result = $manager->runReport("./Resources/testReports/test.jrxml", "memory", ReportManager::REPORT_OUTPUT_RTF, $this->dummyParams(), $this->dummyDataSource(), false, true, null);
+        $this->assertNotEmpty($result);
     }
 
     /**
@@ -58,7 +62,8 @@ class ReportManagerTest extends \PHPUnit_Framework_TestCase{
      * @depends testReportManager
      */
     public function testCsv(ReportManager $manager) {
-        return $manager->runReport("./Resources/testReports/test.jrxml", "memory", ReportManager::REPORT_OUTPUT_CSV, $this->dummyParams(), $this->dummyDataSource(), false, true, null);
+        $result = $manager->runReport("./Resources/testReports/test.jrxml", "memory", ReportManager::REPORT_OUTPUT_CSV, $this->dummyParams(), $this->dummyDataSource(), false, true, null);
+        $this->assertNotEmpty($result);
     }
 
     /**

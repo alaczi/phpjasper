@@ -1,5 +1,7 @@
-PHP - JasperReports intergation with JavaBridge
+PHP - JasperReports integration with JavaBridge
 ====
+[![Build Status](https://travis-ci.com/alaczi/phpjasper.svg?branch=master)](https://travis-ci.com/alaczi/phpjasper)
+
 This component is to run JasperReports reports in PHP with using JavaBridge.
 
 ## Why?
@@ -10,9 +12,9 @@ and it comes with a wysiwyg editor, iReports.
 ## Requirements
 To get this work, you have to install JavaBridge and add required .jars from JasperReports.
 
-- JavaBridge: http://php-java-bridge.sourceforge.net/pjb/
-- JasperReports: http://community.jaspersoft.com/project/jasperreports-library
-- iReport: http://community.jaspersoft.com/project/ireport-designer
+- JavaBridge: https://sourceforge.net/projects/php-java-bridge
+- JasperReports: https://sourceforge.net/projects/jasperreports
+- JasperSoft Studio: https://sourceforge.net/projects/jasperstudio
 
 There is a script in the Resources/script dir to easily start the standalone JavaBridge server with the jar files included in the classpath
 
@@ -25,19 +27,10 @@ Clone the project
 
 Using composer
 ```YML
-{
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/polarbearhandler/phpjasper"
-        }
-    ],
-    "require": {
-        "polarbear/phpjasper": "dev-master",
-    }
-}
+composer require polarbear/phpjasper
 ```
-For JavaBridge include you should set allow_url_include to true in php.ini
+
+For JavaBridge include you should set `allow_url_include` to `On` in php.ini
 
 ## Limitations
 

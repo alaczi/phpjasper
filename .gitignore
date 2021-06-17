@@ -6,3 +6,4 @@
 /Resources/scripts/libs/
 .phpunit.result.cache
 .idea
+/coverage

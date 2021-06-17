@@ -97,7 +97,7 @@ class ReportManager {
     }
 
     /**
-     * Inicializálja a report managert, betölti a java kiterjeztést
+     * Init the report manager, load the java extension from javabridge
      */
     public function init() {
         if (!extension_loaded('java')) {
@@ -124,7 +124,7 @@ class ReportManager {
     }
 
     /**
-     * Returns the mimem of the given format
+     * Returns the mime of the given format
      * @param string $formatString the format to check
      * @return string MIME type
      */
@@ -168,8 +168,8 @@ class ReportManager {
             switch ($targetFormat) {
                 case ReportManager::REPORT_OUTPUT_PDF:
                     $exporter = new \Java("net.sf.jasperreports.engine.export.JRPdfExporter");
-                    $pdfReportParameter = new \JavaClass('net.sf.jasperreports.engine.export.JRPdfExporterParameter');
-                    $exporter->setParameter($pdfReportParameter->PDF_VERSION, $pdfReportParameter->PDF_VERSION_1_7);
+//                    $pdfReportParameter = new \JavaClass('net.sf.jasperreports.engine.export.JRPdfExporterParameter');
+//                    $exporter->setParameter($pdfReportParameter->PDF_VERSION, $pdfReportParameter->PDF_VERSION_1_7);
                     break;
                 case ReportManager::REPORT_OUTPUT_RTF:
                     $exporter = new \Java("net.sf.jasperreports.engine.export.JRRtfExporter");
@@ -196,9 +196,7 @@ class ReportManager {
                     $exporter = new \Java("net.sf.jasperreports.engine.export.JRCsvExporter");
                     break;
                 case ReportManager::REPORT_OUTPUT_HTML:
-                    $htmlReportParameter = new \JavaClass('net.sf.jasperreports.engine.export.JRHtmlExporterParameter');
-                    $exporter = new \Java("net.sf.jasperreports.engine.export.JRHtmlExporter");
-                    $exporter->setParameter($htmlReportParameter->IS_USING_IMAGES_TO_ALIGN, false);
+                    $exporter = new \Java("net.sf.jasperreports.engine.export.HtmlExporter");
                     break;
                 case ReportManager::REPORT_OUTPUT_FLASH:
 //                    $exporter = new \Java("net.sf.jasperreports.engine.export.JRFlashExporter");
@@ -337,7 +335,7 @@ class ReportManager {
      * @param mixed $value Value
      * @param string $className java class name
      * @returns the java class instance
-     * @throws Exception if the conversion was unsuccesful
+     * @throws Exception if the conversion was unsuccessful
      */
     public function convertValue($value, $className) {
         $this->init();

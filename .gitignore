@@ -1,3 +1,8 @@
 /vendor/
 /composer.phar
 /nbproject
+/Resources/scripts/pid
+/Resources/scripts/logfile
+/Resources/scripts/libs/
+.phpunit.result.cache
+.idea

@@ -207,10 +207,8 @@ class ReportManager {
             $exporter->setParameter($reportParameter->JASPER_PRINT, $jasperPrint);
 
             if ($targetFile == 'memory') {
-//                $objStream = new \Java("java.io.ByteArrayOutputStream");
-//                $exporter->setParameter($reportParameter->OUTPUT_STREAM, $objStream );
-                $outputPath = $this->tmpDir . uniqid('jasper-') . ".tmp";
-                $exporter->setParameter($reportParameter->OUTPUT_FILE_NAME, $outputPath);
+                $objStream = new \Java("java.io.ByteArrayOutputStream");
+                $exporter->setParameter($reportParameter->OUTPUT_STREAM, $objStream );
             } else {
                 $outputPath = $this->advrealpath($targetFile);
                 $exporter->setParameter($reportParameter->OUTPUT_FILE_NAME, $outputPath);
@@ -221,8 +219,7 @@ class ReportManager {
             $exporter->exportReport();
 
             if ($targetFile == 'memory') {
-                $result = implode(file($outputPath));
-                unlink($outputPath);
+                $result = $objStream->toByteArray();
             } else {
                 $result = $outputPath;
             }

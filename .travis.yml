@@ -13,8 +13,13 @@ before_script:
   - which java
   - make javabridge-start
   - phpunit --version
+  - mkdir coverage
 
 # omitting "script:" will default to phpunit
-# use the $DB env variable to determine the phpunit.xml to use
+# use the $DB env variable to determine the phpunit.xml.dist to use
 script:
-  make test
+  make test-coverage-travis
+
+after_success:
+  - travis_retry php vendor/bin/php-coveralls
+

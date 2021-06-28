@@ -1,5 +1,8 @@
 test:
-	./vendor/bin/phpunit ./src
+	./vendor/bin/phpunit
+
+test-coverage-travis:
+	./vendor/bin/phpunit --coverage-clover ./coverage/clover.xml
 
 install:
 	composer install
